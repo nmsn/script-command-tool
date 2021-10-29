@@ -1,28 +1,43 @@
 #!/usr/bin/env node
 
+const { program } = require("commander");
 // const inquirer = require("inquirer");
+program.version("0.0.1");
 const fs = require("fs");
 const child_process = require("child_process");
+const stdout = require("./stdout");
+
+console.log('stdout', stdout);
 
 // 获取命令执行路径
 const cwd = process.cwd();
+
+program
+  .option("-a, --all", "show all shell")
+  .option("-e, --exec", "select a shell and exec");
+
+program.parse(process.argv);
+const options = program.opts();
+
+console.log(options);
 
 fs.readFile("package.json", (err, data) => {
   if (err) throw err;
 
   const { scripts } = JSON.parse(data);
-  console.log(scripts);
+  // console.log(scripts);
 
-  const scriptsArr = Object.entries(scripts).map(([name, shell]) => ({
-    name,
-    shell,
-  }));
+  if (options.all) {
+    stdout(scripts);
 
-  console.log(scriptsArr);
+    // exit();
+  } else {
+    console.log("...other operation");
+  }
 
-  console.log(scriptsArr[0].shell);
+  // console.log(scriptsArr[0].shell);
 
-  child_process.exec(scriptsArr[0].shell, (err, stdout, stderr) =>
-    console.log("ok", err, stdout, stderr),
-  );
+  // child_process.exec(scriptsArr[0].shell, (err, stdout, stderr) =>
+  //   console.log("ok", err, stdout, stderr),
+  // );
 });
