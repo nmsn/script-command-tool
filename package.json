@@ -1,7 +1,7 @@
 {
   "name": "script-command-tool",
   "version": "0.0.1",
-  "description": "",
+  "description": "Get current package.json scripts",
   "main": "index.js",
   "bin": {
     "tpc": "index.js"
@@ -9,12 +9,32 @@
   "scripts": {
     "start": "node -v",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sct": "node index.js"
+    "sct": "node index.js",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
   },
-  "author": "nmsn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmsn/script-command-tool.git"
+  },
+  "homepage": "https://github.com/nmsn/script-command-tool#readme",
+  "author": "nmsn <136696700@qq.com> (https://blog.nmsn.site/)",
   "license": "MIT",
   "dependencies": {
     "commander": "^8.3.0",
     "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.1",
+    "prettier": "2.3.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
