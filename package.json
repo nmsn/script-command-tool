@@ -4,7 +4,7 @@
   "description": "Get current package.json scripts",
   "main": "index.js",
   "bin": {
-    "tpc": "index.js"
+    "sct": "index.js"
   },
   "scripts": {
     "start": "node -v",

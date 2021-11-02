@@ -5,4 +5,5 @@ module.exports = scripts => {
   }));
 
   const str = scriptObjList.map(({ name, shell }) => `${name}: ${shell}`).join('\n');
+  console.log(str);
 };
